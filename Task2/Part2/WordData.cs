@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    public struct WordData
+    public class WordData
     {
-        public int NumberOfInputs { get; private set; }
+        public int NumberOfInputs { get; set; }
         public List<int> PagesNumbers { get; private set; }
 
         public WordData(int numberOfInputs,List<int> pagesNumbers)

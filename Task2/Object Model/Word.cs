@@ -21,6 +21,16 @@ namespace Task2
             WordStr = word;
         }
 
+        public string ToLower()
+        {
+            string s = "";
+            foreach (char c in WordStr)
+            {
+                s += char.ToLower(c);
+            }
+            return s;
+        }
+
         public bool ConsistsLetter()
         {
             foreach (char c in WordStr)

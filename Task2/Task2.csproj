@@ -52,7 +52,6 @@
     <Compile Include="Object Model\WordEqualityComparer.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Part2\Part2.cs" />
-    <Compile Include="Part2\StringComparer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Object Model\Sentence.cs" />

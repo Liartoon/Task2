@@ -9,5 +9,7 @@ namespace Task2
     public interface IWord: ICount
     {
         string WordStr { get; set; }
+
+        string ToLower();
     }
 }

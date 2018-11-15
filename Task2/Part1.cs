@@ -69,7 +69,8 @@ namespace Task2
         {
             IText newText = new Text();
             Sentence newSentence;
-            string consonantString = "BCDFGHJKLMNPQRSTVWXYZ";
+            string vowelString = "AEIOUY";
+            string consonantString = "BCDFGHJKLMNPQRSTVWXZ";
             foreach (ISentence sentence in text.Sentences)
             {
                 newSentence = new Sentence();
@@ -77,13 +78,20 @@ namespace Task2
                 {
                     foreach (char c in consonantString)
                     {
-                        if (word.Count!=0)
-                        if (((((word.WordStr[0] != c)&&(word.WordStr[0]!=char.ToLower(c))))
-                                ||(((word.WordStr[0] == c)  || (word.WordStr[0]==char.ToLower(c)))
-                                &&(wordLength!= word.WordStr.Length))))
-                        {
-                                newSentence.AddWord(word,sentence.Dividers[sentence.Words.IndexOf(word)]);
+                        if (word.Count != 0)
+                            if (((word.WordStr[0] == c) || (word.WordStr[0] == char.ToLower(c))) && (wordLength != word.WordStr.Length))
+                            {
+                                newSentence.AddWord(word, sentence.Dividers[sentence.Words.IndexOf(word)]);
                                 break;
+                            }             
+                    }
+                    foreach (char c in vowelString)
+                    {
+                        if (word.Count != 0)
+                            if (((word.WordStr[0] == c) || (word.WordStr[0] == char.ToLower(c))))
+                        {
+                            newSentence.AddWord(word, sentence.Dividers[sentence.Words.IndexOf(word)]);
+                            break;
                         }
                     }
                 }
