@@ -10,7 +10,7 @@ namespace Task2
     {
         public List<IWord> Words { get; private set; }
         public List<string> Dividers { get; private set; }
-        public SentenceType SentenceType { get; private set; }
+        public ISentenceType SentenceType { get; private set; }
 
         public int Count { get { return Words.Count; } }
 
@@ -29,9 +29,9 @@ namespace Task2
         {
             switch (endOfSentence)
             {
-                case "!": { SentenceType = SentenceType.Exclamation; break; }
-                case ".": { SentenceType = SentenceType.Common; break; }
-                case "?": { SentenceType = SentenceType.Question; break; }
+                case "!": { SentenceType = new Exclamation(); ; break; }
+                case ".": { SentenceType = new Common(); break; }
+                case "?": { SentenceType = new Question(); break; }
             }
         }
 

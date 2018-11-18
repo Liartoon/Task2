@@ -26,7 +26,6 @@ namespace Task2
 
         private void DivideText(ref string text)
         {
-                Text = new Text();
                 string[] sentences = Regex.Split(text, @"(?<=[!.?])");
                 string[] words;
                 List<string> dividers;
@@ -72,9 +71,14 @@ namespace Task2
         {
             try
             {
-                StreamReader sr = File.OpenText(fileName);
-                string text=ClearText(sr.ReadToEnd()," ,.!?");
-                DivideText(ref text);
+                StreamReader sr = new StreamReader(fileName);
+                string text;
+                Text = new Text();
+                while (!sr.EndOfStream)
+                {
+                    text = ClearText(sr.ReadLine(), " ,.!?");
+                    DivideText(ref text);
+                }
                 sr.Close();
             }
             catch (FileNotFoundException ex)

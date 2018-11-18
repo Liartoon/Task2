@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    public enum SentenceType
+    class Common : ISentenceType
     {
-        Common,
-        Exclamation,
-        Question
+        
     }
 }

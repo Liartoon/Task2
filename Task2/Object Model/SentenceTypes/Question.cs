@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    public interface ISentenceType
+    class Question: ISentenceType
     {
     }
 }

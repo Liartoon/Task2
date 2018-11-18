@@ -37,7 +37,7 @@ namespace Task2
             string result="";
             foreach (ISentence sentence in Sentences)
             {
-                result = sentence.ToString();
+                result += sentence.ToString()+ "\n";
             }
             return result;
         }

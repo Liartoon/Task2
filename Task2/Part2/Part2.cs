@@ -30,34 +30,46 @@ namespace Task2
             sr.Close();
         }
 
-        private Dictionary<string, WordData> FillTheDictionary(Dictionary<string, WordData> dictionary,IText text)
+        private Dictionary<string, WordData> FillTheDictionary(Dictionary<string, WordData> dictionary,IText text, int numOfStringInPage)
         {
-            int page = 1;
-            int numberOfInputs;
+            int page = 1, numberOfString=0;
             var sort = from pair in dictionary
                        orderby pair.Key
                        select pair;
             Dictionary<string, WordData> sortedDictionary = new Dictionary<string, WordData>();
-            foreach (ISentence sentence in text.Sentences)
+
+            foreach (var sentence in text.Sentences)
             {
-                foreach (IWord word in sentence.Words)
+                if (sentence.Words[0].WordStr != "")
                 {
-                    if (word.ToLower()!="")
-                    if (dictionary.ContainsKey(word.ToLower()))
+                    
+                    if (numOfStringInPage == numberOfString)
                     {
-                            dictionary[word.ToLower()].NumberOfInputs++;
-                        if (dictionary[word.ToLower()].PagesNumbers.Find(x => x==page)==0)
+                        numberOfString = 0;
+                        page++;
+                    }
+                    numberOfString++;
+                }
+                foreach (var word in sentence.Words)
+                {
+                    
+                    if (word.ToLower() != "")
+                    {
+                        if (dictionary.ContainsKey(word.ToLower()))
                         {
+                            dictionary[word.ToLower()].NumberOfInputs++;
+                            if (dictionary[word.ToLower()].PagesNumbers.Find(x => x == page) == 0)
+                            {
+                                dictionary[word.ToLower()].PagesNumbers.Add(page);
+                            }
+                        }
+                        else
+                        {
+                            dictionary.Add(word.ToLower(), new WordData(1, new List<int>()));
                             dictionary[word.ToLower()].PagesNumbers.Add(page);
                         }
                     }
-                    else
-                    {
-                        dictionary.Add(word.ToLower(), new WordData(1, new List<int>()));
-                        dictionary[word.ToLower()].PagesNumbers.Add(page);
-                    }
                 }
-                page++;
             }
 
             
@@ -68,10 +80,10 @@ namespace Task2
             return sortedDictionary;
         }
 
-        public Part2(IText text)
+        public Part2(IText text, int numOfStringInPage)
         {
             Dictionary<string, WordData> dictionary = new Dictionary<string, WordData>();
-            OutputDataInFile("output.txt", FillTheDictionary(dictionary, text));
+            OutputDataInFile("output.txt", FillTheDictionary(dictionary, text, numOfStringInPage));     
         }
     }
 }

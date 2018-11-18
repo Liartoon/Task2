@@ -14,8 +14,10 @@ namespace Task2
         {
             Console.WriteLine("1.1");
             var sentences = (from sentence in text.Sentences
+                             //where sentence.Words[0].WordStr!=""
                              orderby sentence.Count
                              select sentence);
+
             foreach (ISentence sentence in sentences)
             {
                 if (sentence.ToString()[0]==' ')
@@ -33,7 +35,7 @@ namespace Task2
             Dictionary<IWord, int> dictWords = new Dictionary<IWord, int>(new WordEqualityComparer());
                 foreach (ISentence sentence in text.Sentences)
                 {
-                    if (sentence.SentenceType==SentenceType.Question)
+                    if (sentence.SentenceType is Question)
                     {
                         foreach (IWord word in sentence.Words)
                         {
@@ -67,7 +69,7 @@ namespace Task2
         //3
         public static void DeleteWordsByLengthAndConsonantFirstLetter(IText text, int wordLength)
         {
-            IText newText = new Text();
+            IText newText=new Text();
             Sentence newSentence;
             string vowelString = "AEIOUY";
             string consonantString = "BCDFGHJKLMNPQRSTVWXZ";
@@ -97,6 +99,8 @@ namespace Task2
                 }
                 newText.AddSentence(newSentence);
             }
+            Console.WriteLine("1.3");
+            Console.Write(newText.OutputText());
         }
         //4
         public static void ChangeWordBySubstring(IText text,int sentenceNum,int length,string substring)

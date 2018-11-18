@@ -14,7 +14,7 @@ namespace Task2
             Part1.SortQuestionSentencesByLength(parser.Text,3);
             Part1.DeleteWordsByLengthAndConsonantFirstLetter(parser.Text, 3);
             Part1.ChangeWordBySubstring(parser.Text,1,3,"goodees");
-            Part2 part2=new Part2(parser.Text);
+            Part2 part2=new Part2(parser.Text,1);
             Console.ReadKey();
         }
     }
